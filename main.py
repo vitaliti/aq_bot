@@ -70,7 +70,7 @@ def check_status(targets: list) -> Status:
             print(f"{status.name} not found: {e}")
     return result
 
-def qeen_hybee():
+def leveling_qeen_hybee():
     while True:
         time.sleep(0.3)
         result = check_status(targets_queen)
@@ -175,6 +175,6 @@ while True:
 
     # Give some time to open AQ
     time.sleep(3)
-    # qeen_hybee()
+    # leveling_qeen_hybee()
     leveling_war()
     # leveling_shadow_roc()
