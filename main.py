@@ -19,18 +19,18 @@ class Status(Enum):
     SKIP = 12
     QUEEN = 13
 
-menu_path = "menu.png"
-next_path = "next.png"
-level_up_path = "level_up.png"
-click = "click.png"
-exit_shop = "exit_shop.png"
-continue_img = "continue.png"
-play_again = "play_again.png"
-to_battle = "to_battle.png"
-fight_as_war = "fight_as_war.png"
-five_waves = "five_waves.png"
-skip = "skip.png"
-queen = "queen.png"
+menu_path = "assets/menu.png"
+next_path = "assets/next.png"
+level_up_path = "assets/level_up.png"
+click = "assets/click.png"
+exit_shop = "assets/exit_shop.png"
+continue_img = "assets/continue.png"
+play_again = "assets/play_again.png"
+to_battle = "assets/to_battle.png"
+fight_as_war = "assets/fight_as_war.png"
+five_waves = "assets/five_waves.png"
+skip = "assets/skip.png"
+queen = "assets/queen.png"
 
 # map image path → (Status, confidence)
 targets_war = [
