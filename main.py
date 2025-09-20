@@ -19,6 +19,12 @@ class Status(Enum):
     SKIP = 12
     QUEEN = 13
 
+class Mode(Enum):
+    PRINT = "print"
+    QUEEN = "queen"
+    WAR = "war"
+    ROC = "roc"
+
 menu_path = "assets/menu.png"
 next_path = "assets/next.png"
 level_up_path = "assets/level_up.png"
@@ -34,28 +40,26 @@ queen = "assets/queen.png"
 
 # map image path → (Status, confidence)
 targets_war = [
-    (menu_path, Status.MENU, 0.8),
+    (menu_path, Status.MENU, 0.6),
     (next_path, Status.NEXT, 0.8),
     (level_up_path, Status.LEVEL_UP, 0.8),
     (click, Status.CLICK, 0.4),
-    (exit_shop, Status.EXIT_SHOP, 0.8),
-    (continue_img, Status.CONTINUE, 0.8),
-    (play_again, Status.PLAY_AGAIN, 0.8),
-    (to_battle, Status.TO_BATTLE, 0.8),
-    (fight_as_war, Status.FIGHT_AS_WAR, 0.8),
-    (five_waves, Status.FIVE_WAVES, 0.8),
-    (skip, Status.SKIP, 0.8),
+    (exit_shop, Status.EXIT_SHOP, 0.5),
+    (continue_img, Status.CONTINUE, 0.6),
+    (play_again, Status.PLAY_AGAIN, 0.5),
+    (to_battle, Status.TO_BATTLE, 0.5),
+    (fight_as_war, Status.FIGHT_AS_WAR, 0.5),
+    (five_waves, Status.FIVE_WAVES, 0.5),
+    (skip, Status.SKIP, 0.6),
 ]
-
 targets_queen = [
-    (menu_path, Status.MENU, 0.8),
+    (menu_path, Status.MENU, 0.7),
     (next_path, Status.NEXT, 0.8),
-    (level_up_path, Status.LEVEL_UP, 0.8),
-    (queen, Status.QUEEN, 0.8),
+    (level_up_path, Status.LEVEL_UP, 0.6),
+    (queen, Status.QUEEN, 0.5)
 ]
-
 targets_mogg_leveling = [
-    (menu_path, Status.MENU, 0.8),
+    (menu_path, Status.MENU, 0.7),
     (next_path, Status.NEXT, 0.8),
     (level_up_path, Status.LEVEL_UP, 0.5),
 ]
@@ -69,7 +73,6 @@ def check_status(targets: list) -> Status:
         except Exception as e:
             print(f"{status.name} not found: {e}")
     return result
-
 def leveling_qeen_hybee():
     while True:
         time.sleep(0.3)
@@ -103,11 +106,9 @@ def leveling_war():
             pyautogui.leftClick()
             time.sleep(0.5)
             pyautogui.leftClick()
-            break
         elif(result is Status.LEVEL_UP):
             pyautogui.moveTo(955, 527,duration=0.2)
             pyautogui.leftClick()
-            break
         elif(result is Status.CLICK):
             pyautogui.leftClick()
             pyautogui.leftClick()
@@ -169,12 +170,25 @@ def leveling_shadow_roc():
         # Visit nehgour
         pyautogui.moveTo(1155, 993,duration=0.2)
         pyautogui.leftClick()
-while True:
-    # print(pyautogui.position())
-    # time.sleep(1)
 
+import sys
+
+def main():
+    mode = "queen"
+    if len(sys.argv) >= 2:
+        mode = sys.argv[1]
     # Give some time to open AQ
     time.sleep(3)
-    # leveling_qeen_hybee()
-    leveling_war()
-    # leveling_shadow_roc()
+    if(Mode(mode) == Mode.PRINT):
+        while True:
+            print(pyautogui.position())
+            time.sleep(1)
+    elif(Mode(mode) == Mode.QUEEN):
+        leveling_qeen_hybee()
+    elif(Mode(mode) == Mode.WAR):
+        leveling_war()
+    elif(Mode(mode) == Mode.ROC):
+        leveling_shadow_roc()
+
+if __name__ == "__main__":
+    main()
